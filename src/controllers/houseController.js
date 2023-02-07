@@ -132,10 +132,19 @@ exports.getDeleteHouse= async (req, res) => {
     }
 }
 
-// exports.getAllMyPosts = async (req,res) => {
-//     const allPosts = await postService.getAllPosts().populate('autor').lean()
-//     const allMyPosts = allPosts.filter(x => x.autor._id == req.user._id)
+exports.getSearchPage = async (req,res) => {
 
-    
-//     res.render('myPost', {allMyPosts})
-// }
+    let isSearched = false
+    res.render('search', {isSearched})
+}
+
+exports.getSearchPagewithResults = async (req, res) => {
+    let isSearched = true
+    const {searchedItem} = req.body
+
+    const allMatches = await housingService.getSearchedbyType(searchedItem).lean()
+    console.log(allMatches)
+
+
+    res.render('search', {allMatches, isSearched})
+}

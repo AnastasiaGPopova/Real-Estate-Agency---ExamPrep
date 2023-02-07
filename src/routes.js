@@ -44,8 +44,9 @@ router.post('/:houseId/edit', isAuthenticated, houseController.postEditedHouse)
 // //Delete post
 router.get('/:houseId/delete', isAuthenticated, houseController.getDeleteHouse)
 
-// //Myposts
-// router.get('/myPosts', isAuthenticated, postController.getAllMyPosts)
+// //search
+router.get('/search', isAuthenticated, houseController.getSearchPage)
+router.post('/search', isAuthenticated, houseController.getSearchPagewithResults)
 
 
 router.get('/logout', authController.logout)
